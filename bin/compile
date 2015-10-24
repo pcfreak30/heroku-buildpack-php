@@ -63,11 +63,6 @@ BUILDPACK_URL=${BUILDPACK_URL:-} # Anvil has none
 BUILDPACK_BRANCH=$(expr "$BUILDPACK_URL" : '^.*/heroku-buildpack-php#\(..*\)$' || expr "$BUILDPACK_URL" : '^.*/heroku-buildpack-php\.git#\(..*\)$' || true) # POSIX expr doesn't understand ".+" or "(\.git)?"
 BUILDPACK_BRANCH=${BUILDPACK_BRANCH:-master}
 
-if [[ "$BUILDPACK_BRANCH" != v* && "$BUILDPACK_BRANCH" != "master" ]]; then
-    S3_URL="develop"
-fi
-DEFAULT_S3_URL=https://lang-php.s3.amazonaws.com/dist-${STACK}-${BUILDPACK_BRANCH:-"master"}
-S3_URL=${S3_URL:-${DEFAULT_S3_URL}}
 RTVS_URL="https://php-runtime-version-selector.herokuapp.com"
 
 cd $BUILD_DIR
